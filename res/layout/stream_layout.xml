@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="@drawable/back"
-    android:orientation="horizontal"
-    android:paddingLeft="160px"
-    android:paddingTop="300px" >
+    android:orientation="vertical"
+    android:paddingLeft="0dp" >
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/playbutton"
         android:clickable="true"
-        android:onClick="onMyButtonClick"
-        android:text="Play Now" />
+        android:gravity="center"
+        android:minHeight="35dip"
+        android:minWidth="45dip"
+        android:onClick="onMyButtonClick" />
     
-</LinearLayout>
+</RelativeLayout>

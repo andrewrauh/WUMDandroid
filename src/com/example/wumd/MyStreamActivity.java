@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AbsoluteLayout;
 import android.widget.Button;
 
 public class MyStreamActivity extends Activity {
@@ -27,74 +28,33 @@ public class MyStreamActivity extends Activity {
 	    setContentView(R.layout.stream_layout);
 	    bt = (Button)findViewById(R.id.button1);
 	    mediaPlayer = new MediaPlayer();
-	    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);	    
-
-	    // TODO Auto-generated method stub
+	    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);	
+	    bt.setBackgroundResource(R.drawable.playbutton);
+//	    bt.setWidth(20);
+//	    bt.setHeight(20);
+	    bt.setVisibility(View.VISIBLE);
+//	    AbsoluteLayout.LayoutParams OBJ = new AbsoluteLayout.LayoutParams(40,40,100,100);
+//	    bt.setLayoutParams(OBJ);
 	}
 	
 	
     public void onMyButtonClick(View view){	    	
-	    		if (!playPause){
-	    			//set resource
-	    	    	Log.v("myApp","got in player!");
-	    			if (initialStage){
-	    				try {
-							mediaPlayer.setDataSource("http://streams.umd.umich.edu:8000/wumd.mp3");
-							mediaPlayer.prepare();
-							mediaPlayer.start();
-			    	    	Log.v("myApp","got in player2");
-
-						} catch (IllegalArgumentException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (SecurityException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (IllegalStateException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-//	    				new Player().execute("http://streams.umd.umich.edu:8000/wumd.mp3");
-//	    				mediaPlayer.start();
-	    			}
-	    			else {
-	    				if (!mediaPlayer.isPlaying()){
-							try {
-								mediaPlayer.setDataSource("http://streams.umd.umich.edu:8000/wumd.mp3");
-		    					mediaPlayer.prepare();
-							} catch (IllegalArgumentException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (SecurityException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (IllegalStateException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-	    					mediaPlayer.start();
-		    	    	Log.v("myApp","got in player start!");
-
-	    				}
-
-	    			}
-	    			playPause = true;
-	    		}
-	    		else {
-	    			//change resource
-	    			if (mediaPlayer.isPlaying())
-	    				mediaPlayer.pause();
-	    			playPause = false;
-	    		}
-	    		Log.v("myApp", "got here!");
-	    	    	
-    	Log.v("myApp","got clicked!");
+        if (!playPause) {
+            bt.setBackgroundResource(R.drawable.pause);
+            if (initialStage)
+                new Player()
+                        .execute("http://streams.umd.umich.edu:8000/wumd.mp3");
+            else {
+                if (!mediaPlayer.isPlaying())
+                    mediaPlayer.start();
+            }
+            playPause = true;
+        } else {
+            bt.setBackgroundResource(R.drawable.playbutton);
+            if (mediaPlayer.isPlaying())
+                mediaPlayer.pause();
+            playPause = false;
+        }
     }
 
 
@@ -114,9 +74,9 @@ public class MyStreamActivity extends Activity {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
                         // TODO Auto-generated method stub
-                        intialStage = true;
+                    	initialStage = true;
                         playPause=false;
-                        btn.setBackgroundResource(R.drawable.button_play);
+                        bt.setBackgroundResource(R.drawable.playbutton);
                         mediaPlayer.stop();
                         mediaPlayer.reset();
                     }
@@ -154,7 +114,7 @@ public class MyStreamActivity extends Activity {
             Log.d("Prepared", "//" + result);
             mediaPlayer.start();
 
-            intialStage = false;
+            initialStage = false;
         }
 
         public Player() {

@@ -1,9 +1,10 @@
 package com.example.wumd;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.os.Bundle;
 
-public class MyDJProfileActivity extends Activity {
+public class MyDJProfileActivity extends ListActivity {
 
 	/** Called when the activity is first created. */
 	@Override
