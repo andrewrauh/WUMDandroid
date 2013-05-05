@@ -9,7 +9,8 @@ public class MyContactActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	
+	    setContentView(R.layout.contact_layout);
+
 	    // TODO Auto-generated method stub
 	}
 

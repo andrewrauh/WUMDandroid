@@ -77,8 +77,11 @@ public class MyStreamActivity extends Activity {
                     	initialStage = true;
                         playPause=false;
                         bt.setBackgroundResource(R.drawable.playbutton);
-                        mediaPlayer.stop();
-                        mediaPlayer.reset();
+                        if (mediaPlayer != null){
+                            mediaPlayer.stop();
+                            mediaPlayer.reset();
+
+                        }
                     }
                 });
                 mediaPlayer.prepare();
@@ -134,11 +137,8 @@ public class MyStreamActivity extends Activity {
     @Override
     protected void onPause() {
         // TODO Auto-generated method stub
+    	Log.d("message", "was called pause");
         super.onPause();
-        if (mediaPlayer != null) {
-            mediaPlayer.reset();
-            mediaPlayer.release();
-            mediaPlayer = null;
-        }
+
     }
 }

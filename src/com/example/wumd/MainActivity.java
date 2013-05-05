@@ -39,11 +39,16 @@ public class MainActivity extends TabActivity {
         Intent profilesIntent = new Intent(this, MyDJProfileActivity.class);
         myDJSpec.setContent(profilesIntent);
         
+        TabSpec myContactTab = tabHost.newTabSpec("Contact");
+        myContactTab.setIndicator("Contact");
+        Intent contactIntent = new Intent(this, MyContactActivity.class);
+        myContactTab.setContent(contactIntent);
+        
         //Tabs for Contact Page 
         tabHost.addTab(myStreamSpec); // Adding photos tab
         tabHost.addTab(myCalSpec); // Adding songs tab
         tabHost.addTab(myDJSpec); // Adding videos tab
-        
+        tabHost.addTab(myContactTab);
     }
 
 
